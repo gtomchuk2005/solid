@@ -2,16 +2,21 @@
 #include <iostream>
 
 class DiscountCalculator {
+private:
+    std::unordered_map<std::string, double> discountRates = {
+        {"Loyal", 0.95},
+        {"VIP", 0.90}
+    };
+
 public:
     double calculate(const std::string& customerType, double amount) {
-        if (customerType == "Loyal") {
-            return amount * 0.95;
-        } else if (customerType == "VIP") {
-            return amount * 0.90;
-        } else {
-            return amount;
+        for (const auto& pair : discountRates) {
+            if (pair.first == customerType) {
+                return amount * pair.second;
+            }
         }
-    }
+        return amount;
+    };
 };
 
 // Included for demonstration

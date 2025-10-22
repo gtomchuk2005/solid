@@ -21,15 +21,18 @@ public:
 // with one device.
 class InputProcessor {
 public:
-    void processInput() {
-        Keyboard keyboard;
-        std::string input = keyboard.getInput();
-        std::cout << "Processing: " << input;
+    template<typename InputDevice>
+    void processInput(InputDevice& device) {
+        std::string input = device.getInput();
+        std::cout << "Processing: " << input << '\n';
     }
 };
 
 // For demonstration
 int main() {
     InputProcessor processor;
-    processor.processInput();
+    Keyboard keyboard;
+    Mouse mouse;
+    processor.processInput(keyboard);
+    processor.processInput(mouse);
 }

@@ -2,23 +2,21 @@
 
 class Bird {
 public:
-    virtual void fly() {
-        std::cout << "Bird is flying\n";
-    };
-    
     virtual void lay_egg() {
         std::cout << "Egg";
     }
 };
 
-class Ostrich : public Bird {
+class FlyingBird : public Bird {
 public:
-    void fly() override {
-        throw std::runtime_error("Ostriches can't fly!");
-    }
+    virtual void fly() {
+        std::cout << "Bird is flying\n";
+    };
 };
 
-class Eagle: public Bird {};
+class Ostrich : public Bird {};
+
+class Eagle: public FlyingBird{};
 
 // For demonstration
 int main() {
@@ -29,5 +27,4 @@ int main() {
     eagle.fly();
 
     ostrich.lay_egg();
-    ostrich.fly();
 }
